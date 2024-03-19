@@ -25,12 +25,6 @@ class SegmentationMethod(SegmentationBase):
 
         masks = predict.run(images, properties, parameters)
 
-        # Expand detected masks
-        expand_labels_rad = 100
-        if expand_labels_rad: # TOBE a parameter later
-            from skimage.segmentation import expand_labels
-            masks = expand_labels(masks, distance=expand_labels_rad)
-
         return generate_polygons_from_mask(masks, polygon_parameters)
 
     @staticmethod

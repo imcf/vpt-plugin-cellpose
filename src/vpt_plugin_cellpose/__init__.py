@@ -18,3 +18,7 @@ class CellposeSegParameters:
     flow_threshold: float
     mask_threshold: float
     minimum_mask_size: int
+    expand_labels_rad: int
+
+def which_version():
+    return "1.0.2"

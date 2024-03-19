@@ -46,4 +46,10 @@ def run(images: ImageSet, properties: CellposeSegProperties, parameters: Cellpos
     mask = mask.reshape((len(to_segment_z),) + image.shape[1:-1])
     for i in empty_z_levels:
         mask = np.insert(mask, i, np.zeros(image.shape[1:-1]), axis=0)
+    
+    # Expand detected masks
+    #expand_labels_rad = 300
+    if parameters.expand_labels_rad>0: # TOBE a parameter later
+        from skimage.segmentation import expand_labels
+        mask = expand_labels(mask, distance=parameters.expand_labels_rad)
     return mask
